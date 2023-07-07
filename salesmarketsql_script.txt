@@ -1,0 +1,51 @@
+SELECT * FROM salesmarketsql.salesmarket;
+
+SELECT (SELECT SUM(Total) FROM salesmarketsql.salesmarket) AS TotalSales;
+
+--Rating average 
+
+SELECT AVG(Rating) AS AverageRating
+FROM salesmarketsql.salesmarket;
+
+SELECT *
+FROM salesmarketsql.salesmarket
+WHERE City = 'Yangon';
+
+SELECT *
+FROM salesmarketsql.salesmarket
+ORDER BY Total DESC;
+
+---total sales by city
+
+SELECT City, SUM(Total) AS TotalSales
+FROM salesmarketsql.salesmarket
+GROUP BY City;
+
+
+SELECT Productline, City, SUM(Total) AS TotalSales
+FROM salesmarketsql.salesmarket
+GROUP BY ProductLine, City;
+
+--rating average by gender 
+
+SELECT Gender, AVG(Rating) AS AverageRating
+FROM salesmarketsql.salesmarket
+GROUP BY Gender;
+
+--sales perfromances by date
+
+SELECT Date, SUM(Total) AS Sales
+FROM salesmarketsql.salesmarket
+GROUP BY Date
+ORDER BY Date;
+
+SELECT DATE_FORMAT(Date, '%Y-%m-%d') AS FormattedDate, SUM(Total) AS Sales
+FROM salesmarketsql.salesmarket
+GROUP BY Date
+ORDER BY Date;
+
+--sales performances by branch
+
+SELECT Branch, SUM(Total) AS TotalSales
+FROM salesmarketsql.salesmarket
+GROUP BY Branch;
